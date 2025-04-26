@@ -20,7 +20,6 @@ print ("The packages have been successfully imported")
 bikes_df=pd.read_csv("D:/DATA SCIENCE CLASS/_EXCLUSIVE DATA SCIENCE BOOT CAMP_STUDENT FOLDER/_DATASET/bikes.csv")
 bikes_df.head()
 ```
-
 ## DATA MODIFICATION
 ```Python
 
@@ -57,3 +56,38 @@ is_bike= bikes_df["ProductCategory"]== "Bikes"
 bike_in_the_US =bikes_df[(is_usa) & (is_bike)]
 bike_in_the_US.head()
 ```
+#### DATA AGGREGATION
+# aggreegating the total profit by states in the United States for bike Sales.
+```Python
+total_profit_by_state = bike_in_the_US.pivot_table(values="Profit",index="CustomerState",aggfunc=np.sum)
+total_profit_by_state
+```
+#### DATA SORTING
+# Sorting the Aggregated Data in order to Rank the state according to the top most profitable state
+```Python
+total_profit_by_state.sort_values("Profit",ascending=False)
+```
+## RESULTS
+#Top Most-Profitable 5 States for a Bike Product Category in the United States
+```Python
+Top_5_most_profitable_state_USA = total_profit_by_state.sort_values("Profit",ascending=False).head()
+Top_5_most_profitable_state_USA
+```
+## DATA VISUALIZATION
+# Visualizing the Result
+```Python
+
+Top_5_most_profitable_state_USA.plot(kind="bar")
+
+#add a title and label to the plot
+plt.title("The Top 5 Most Profitable for Bike Product in the USA")
+
+plt.ylabel("Total profit in Million Dollars")
+plt.xlabel("States")
+
+#showing the plot
+plt.show()
+```
+
+<img width="451" alt="PROJECT 1 screenshot" src="https://github.com/user-attachments/assets/97051134-2fee-413f-980d-a1525672e41d" />
+
